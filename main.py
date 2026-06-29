@@ -1,6 +1,9 @@
+import torch
+
 from src.data import get_cifar10_dataloaders
 from src.patches import PatchEmbedding
-import torch
+from src.attention import MultiHeadAttention
+
 
 def main():
     train_loader, test_loader = get_cifar10_dataloaders()
@@ -14,6 +17,15 @@ def main():
     x = torch.randn(8, 3, 32, 32) # Example input tensor of same shape as CIFAR-1O images and batch size of 8
     output = patch_embedding(x)
     print(f"Output shape: {output.shape}")
+
+    # Test attention
+    attention = MultiHeadAttention()
+    output = attention(output)
+    print(f"MultiHeadAttention output shape: {output.shape}")
+    
+    # Check attention weights are reasonable
+    print(f"Attention output mean: {output.mean().item():.4f}")
+    print(f"Attention output std: {output.std().item():.4f}")
 
 if __name__ == "__main__":
     main()
