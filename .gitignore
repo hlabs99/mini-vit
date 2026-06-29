@@ -6,4 +6,4 @@ venv/
 *.egg-info/
 dist/
 .DS_Store
-data/
+dataset/
