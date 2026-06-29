@@ -14,7 +14,7 @@ PATCH_DIM = PATCH_SIZE * PATCH_SIZE * 3         # flattened patch size
 
 # Transformer model parmeters
 D_MODEL = 128                                   # Embedding dimension
-NUM_HEADS = 4                                   # Number of attention heads
+NUM_HEADS = 8                                   # Number of attention heads
 NUM_LAYERS = 6
 MLP_DIM = 256
 DROPOUT = 0.1
