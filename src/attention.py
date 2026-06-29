@@ -1,17 +1,17 @@
 import torch
 import torch.nn as nn
-from config import D_MODEL, N_HEADS, DROPOUT
+from config import D_MODEL, NUM_HEADS, DROPOUT
 
 class MultiHeadAttention(nn.Module):
     def __init__(self):
         super().__init__()
 
-        self.n_heads = N_HEADS
-        self.head_dim = D_MODEL // N_HEADS
+        self.n_heads = NUM_HEADS
+        self.head_dim = D_MODEL // NUM_HEADS
         self.dropout = nn.Dropout(DROPOUT)
 
 
-        # Instead of N_HEADS separate query matrices (one per head) as proposed in the original 
+        # Instead of NUM_HEADS separate query matrices (one per head) as proposed in the original 
         # "Attention is All You Need" paper, we use a single large linear layer to project the input 
         # into a single query matrix that we can then split afterwards before computing attention.
         # This is more efficient and allows for better parameter sharing across heads.
@@ -37,7 +37,7 @@ class MultiHeadAttention(nn.Module):
         # shape after: (batch_size, n_heads, seq_len, head_dim)
 
         # Compute the attention scores
-        attention_scores = torch.matmul(Q, K.transpose(-2, -1)) / (self.head_dim ** 2)  # shape: (batch_size, n_heads, seq_len, seq_len)
+        attention_scores = torch.matmul(Q, K.transpose(-2, -1)) / (self.head_dim ** 0.5)  # shape: (batch_size, n_heads, seq_len, seq_len)
         attention_weights = torch.softmax(attention_scores, dim=-1)
         attention_weights = self.dropout(attention_weights)
         # Apply the attention weights to the value matrix
