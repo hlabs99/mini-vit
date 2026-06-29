@@ -3,8 +3,8 @@
 
 # Data parameters
 BATCH_SIZE = 64
-IMG_SIZE = 32                                    # Image dimensions
-NUM_CLASSES = 10
+IMG_SIZE = 32                                    # Image dimensions (technically not a hyperparameter)
+NUM_CLASSES = 10                                 # (technically not a hyperparameter)
 
 # Patch embedding parameters
 PATCH_SIZE = 4
