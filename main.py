@@ -4,6 +4,7 @@ from src.data import get_cifar10_dataloaders
 from src.patches import PatchEmbedding
 from src.attention import MultiHeadAttention
 from src.encoder import EncoderBlock
+from src.model import VisionTransformer
 
 
 def main():
@@ -32,6 +33,13 @@ def main():
     encoder_block = EncoderBlock()
     output = encoder_block(output)
     print(f"EncoderBlock output shape: {output.shape}")
+
+    # Test the full Vision Transformer model
+    model = VisionTransformer()
+    output = model(x)
+    print(f"VisionTransformer output shape: {output.shape}")
+
+
     
 if __name__ == "__main__":
     main()
