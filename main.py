@@ -5,6 +5,7 @@ from src.patches import PatchEmbedding
 from src.attention import MultiHeadAttention
 from src.encoder import EncoderBlock
 from src.model import VisionTransformer
+from src.train import train
 
 
 def main():
@@ -38,6 +39,11 @@ def main():
     model = VisionTransformer()
     output = model(x)
     print(f"VisionTransformer output shape: {output.shape}")
+
+    # Sanity check for training loop
+    print("Starting training loop...")
+    train()  # This will run the training loop defined in train.py
+    
 
 
     
