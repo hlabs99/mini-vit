@@ -3,6 +3,7 @@ import torch
 from src.data import get_cifar10_dataloaders
 from src.patches import PatchEmbedding
 from src.attention import MultiHeadAttention
+from src.encoder import EncoderBlock
 
 
 def main():
@@ -27,5 +28,10 @@ def main():
     print(f"Attention output mean: {output.mean().item():.4f}")
     print(f"Attention output std: {output.std().item():.4f}")
 
+    # Test the Encoder Block
+    encoder_block = EncoderBlock()
+    output = encoder_block(output)
+    print(f"EncoderBlock output shape: {output.shape}")
+    
 if __name__ == "__main__":
     main()
