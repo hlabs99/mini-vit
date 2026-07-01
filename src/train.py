@@ -1,4 +1,5 @@
 
+import torch
 from torch.nn import CrossEntropyLoss
 from torch.optim import Adam
 from src.data import get_cifar10_dataloaders
@@ -24,6 +25,9 @@ def train():
 
         avg_loss = total_loss / len(train_loader)
         print(f"Epoch [{epoch+1}/{NUM_EPOCHS}], Loss: {avg_loss:.4f}")
+
+    torch.save(model.state_dict(), 'model.pth')
+    print("Model saved to model.pth")
 
 if __name__ == "__main__":
     train()
